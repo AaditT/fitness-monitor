@@ -6,6 +6,10 @@ def getDate():
     x = datetime.datetime.now()
     return str(x.strftime("%x"))
 
+@app.route('/')
+def home():
+    return redirect(url_for('index'))
+
 @app.route('/index')
 def index():
     return render_template('index.html')
@@ -13,7 +17,8 @@ def index():
 @app.route('/log', methods=['GET', 'POST'])
 def log():
     if request.method == 'POST':
-        print(request.form['workout'])
+        myFile = open("log.txt", 'r+')
+        myFile.write(request.form['count'])
     return render_template('log.html')
 
 
