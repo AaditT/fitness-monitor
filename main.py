@@ -31,22 +31,29 @@ def home():
 
 @app.route('/index')
 def index():
+    error=None
     updateDB()
-    return render_template('index.html',list=mega_list)
+    return render_template('index.html',list=mega_list,error=error)
 
 @app.route('/log', methods=['GET', 'POST'])
 def log():
     if request.method == 'POST':
+        error = None
         workout_type = str(request.form['workout'])
         workout_date = str(request.form['start'])
         workout_count = str(request.form['count'])
-        tFile = open("type.txt", 'a')
-        tFile.write(workout_type+"\n")
-        dFile = open("date.txt", 'a')
-        dFile.write(workout_date+"\n")
-        cFile = open("count.txt", 'a')
-        cFile.write(workout_count+"\n")
-        return redirect(url_for('index'))
+        if not workout_type or not workout_date or not workout_count:
+            error = "Please fill out all entries!"
+            return render_template('log.html', error=error)
+
+        else:
+            tFile = open("type.txt", 'a')
+            tFile.write(workout_type+"\n")
+            dFile = open("date.txt", 'a')
+            dFile.write(workout_date+"\n")
+            cFile = open("count.txt", 'a')
+            cFile.write(workout_count+"\n")
+            return redirect(url_for('index'))
     return render_template('log.html')
 
 
