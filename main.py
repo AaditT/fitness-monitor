@@ -6,8 +6,16 @@ def getDate():
     x = datetime.datetime.now()
     return str(x.strftime("%x"))
 
-@app.route('/')
-def home():
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+@app.route('/log', methods=['GET', 'POST'])
+def log():
+    if request.method == 'POST':
+        print(request.form['workout'])
+    return render_template('log.html')
+
 
 
 if __name__ == '__main__':
