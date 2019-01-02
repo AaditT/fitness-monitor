@@ -3,6 +3,8 @@ from flask import Flask, render_template, redirect, url_for, request
 app = Flask(__name__)
 
 def updateDB():
+    global mega_list
+    mega_list = []
     types = []
     counts = []
     dates = []
@@ -15,7 +17,9 @@ def updateDB():
     dFile = open("date.txt", 'r')
     for line in dFile.readlines():
         dates.append(str(line.rstrip()))
-    return [counts, dates, types]
+    for i in range(0, len(types)):
+        mega_list.append(dict(count=counts[i],date=dates[i],type=types[i]))
+    return mega_list
 
 def getDate():
     x = datetime.datetime.now()
@@ -28,7 +32,7 @@ def home():
 @app.route('/index')
 def index():
     updateDB()
-    return render_template('index.html',counts=updateDB()[0],dates=updateDB()[1],types=updateDB()[2])
+    return render_template('index.html',list=mega_list)
 
 @app.route('/log', methods=['GET', 'POST'])
 def log():

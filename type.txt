@@ -1,1 +1,3 @@
 curl-up
+curl-up
+push-up

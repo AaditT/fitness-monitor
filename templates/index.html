@@ -56,6 +56,17 @@
           <td> <p>Date</p> </td>
         </tr>
       </table>
+      <table>
+         <tbody>
+            {% for item in list %}
+            <TR>
+               <TD>{{item.type}}</TD>
+               <TD>{{item.count}}</TD>
+               <TD>{{item.date}}</TD>
+            </TR>
+            {% endfor %}
+         </tbody>
+      </table>
       <br>
       {{dates}}
       <br>
