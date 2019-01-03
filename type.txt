@@ -1,7 +1,2 @@
 push-up
-curl-up
-push-up
-curl-up
-curl-up
-push-up
 push-up

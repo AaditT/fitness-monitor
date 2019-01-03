@@ -1,18 +1,6 @@
 from flask import Flask, Markup, render_template, redirect, url_for, request
 
-global pushup_counts
-global pushup_dates
-global curlup_counts
-global curlup_dates
-global pullup_counts
-global pullup_dates
 
-pushup_counts = []
-pushup_dates = []
-curlup_counts = []
-curlup_dates = []
-pullup_counts = []
-pullup_counts = []
 
 app = Flask(__name__)
 
@@ -82,9 +70,16 @@ def getPullups():
 
 @app.route('/pushup')
 def pushup():
-    updateDB()
-    bar_labels=getPushups()[0]
-    bar_values=getPushups()[1]
+    pushup_counts = []
+    cFile = open("workoutdb/pushup_count.txt", 'r')
+    for line in cFile.readlines():
+        pushup_counts.append(str(line.rstrip()))
+    pushup_dates = []
+    dFile = open("workoutdb/pushup_date.txt", 'r')
+    for line in dFile.readlines():
+        pushup_dates.append(str(line.rstrip()))
+    bar_labels=pushup_dates
+    bar_values=pushup_counts
     return render_template('bar_chart.html', title='Push-up Monitor', max=150, labels=bar_labels, values=bar_values)
 
 @app.route('/curlup')
@@ -127,14 +122,19 @@ def log():
             return render_template('log.html', error=error)
         else:
             if workout_type == "push-up":
-                pushup_dates.append(workout_date)
-                pushup_counts.append(workout_count)
+                pFile = open("workoutdb/pushup_count.txt", 'a')
+                pFile.write(workout_count+"\n")
+                cFile = open("workoutdb/pushup_date.txt", 'a')
+                cFile.write(workout_date+"\n")
             elif workout_type == "curl-up":
-                curlup_dates.append(workout_date)
-                curlup_counts.append(workout_count)
+                pFile = open("workoutdb/curlup_count.txt", 'a')
+                pFile.write(workout_count+"\n")
+                cFile = open("workoutdb/curlup_date.txt", 'a')
+                cFile.write(workout_date+"\n")
             elif workout_type == "pull-up":
-                pullup_dates.append(workout_date)
-                pullup_counts.append(workout_count)
+                pFile = open("workoutdb/pullup_count.txt", 'a')
+                pFile.write(workout_count+"\n")
+                cFile = open("workoutdb/pullup_date.txt", 'a')
             error = None
             tFile = open("type.txt", 'a')
             tFile.write(workout_type+"\n")
