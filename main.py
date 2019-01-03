@@ -68,7 +68,7 @@ def getPullups():
         dates.append(total_dates[index])
     return [dates, counts]
 
-@app.route('/graph')
+@app.route('/index')
 def graph():
     pushup_counts = []
     cFile = open("workoutdb/pushup_count.txt", 'r')
@@ -109,9 +109,9 @@ def getDate():
 
 @app.route('/')
 def home():
-    return redirect(url_for('index'))
+    return redirect(url_for('graph'))
 
-@app.route('/index')
+@app.route('/table')
 def index():
     error=None
     return render_template('index.html',list=updateDB()[0],error=error)
