@@ -63,14 +63,12 @@
       <button class="button button2">Return Home</button>
     </a>
     <h1>{{ title }}</h1>
-  </center>
-  <center>
     <canvas id="chart" width="300" height="200"></canvas>
     <script>
       // bar chart data
       var barData = {
         labels : [
-          {% for item in labels %}
+          {% for item in pushup_dates %}
            "{{ item }}",
           {% endfor %}
 	],
@@ -79,7 +77,7 @@
           strokeColor: "rgba(151,187,205,1)",
           pointColor: "rgba(151,187,205,1)",
           data : [
-            {% for item in values %}
+            {% for item in pushup_counts %}
                "{{ item }}",
               {% endfor %}
 	    ]
@@ -103,14 +101,13 @@
        }
      );
     </script>
-  </center>
-  <center>
+
     <canvas id="chart2" width="300" height="200"></canvas>
     <script>
       // bar chart data
       var barData = {
         labels : [
-          {% for item in labels %}
+          {% for item in pullup_dates %}
            "{{ item }}",
           {% endfor %}
 	],
@@ -119,7 +116,7 @@
           strokeColor: "rgba(151,187,205,1)",
           pointColor: "rgba(151,187,205,1)",
           data : [
-            {% for item in values %}
+            {% for item in pullup_counts %}
                "{{ item }}",
               {% endfor %}
 	    ]
@@ -143,19 +140,44 @@
        }
      );
     </script>
-  </center>
-  <center>
-  <h1> Jump to...
-  <a href="{{ url_for('pushup') }}">
-    <button class="button button2">Push-up Monitor</button>
-  </a>
-  <a href="{{ url_for('pullup') }}">
-    <button class="button button2">Pull-up Monitor</button>
-  </a>
-  <a href="{{ url_for('curlup') }}">
-    <button class="button button2">Curl-up Monitor</button>
-  </a>
-</h1>
-</center>
+    <canvas id="chart3" width="300" height="200"></canvas>
+    <script>
+      // bar chart data
+      var barData = {
+        labels : [
+          {% for item in curlup_dates %}
+           "{{ item }}",
+          {% endfor %}
+	],
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          data : [
+            {% for item in curlup_counts %}
+               "{{ item }}",
+              {% endfor %}
+	    ]
+          }
+        ]
+      }
+     // get bar chart canvas
+     var mychart = document.getElementById("chart3").getContext("2d");
+       steps = 10
+       max = {{max}}
+     // draw bar chart
+     new Chart(mychart).Bar(barData, {
+       scaleOverride: true,
+       scaleSteps: steps,
+       scaleStepWidth: Math.ceil(max / steps),
+       scaleStartValue: 0,
+       scaleShowVerticalLines: true,
+       scaleShowGridLines : true,
+       barShowStroke : true,
+       scaleShowLabels: true
+       }
+     );
+    </script>
+
 </body>
 </html>

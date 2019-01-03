@@ -68,8 +68,8 @@ def getPullups():
         dates.append(total_dates[index])
     return [dates, counts]
 
-@app.route('/pushup')
-def pushup():
+@app.route('/graph')
+def graph():
     pushup_counts = []
     cFile = open("workoutdb/pushup_count.txt", 'r')
     for line in cFile.readlines():
@@ -78,23 +78,30 @@ def pushup():
     dFile = open("workoutdb/pushup_date.txt", 'r')
     for line in dFile.readlines():
         pushup_dates.append(str(line.rstrip()))
+
+    pullup_counts = []
+    eFile = open("workoutdb/pullup_count.txt", 'r')
+    for line in eFile.readlines():
+        pullup_counts.append(str(line.rstrip()))
+    pullup_dates = []
+    fFile = open("workoutdb/pullup_date.txt", 'r')
+    for line in fFile.readlines():
+        pullup_dates.append(str(line.rstrip()))
+
+    curlup_counts = []
+    gFile = open("workoutdb/curlup_count.txt", 'r')
+    for line in gFile.readlines():
+        curlup_counts.append(str(line.rstrip()))
+    curlup_dates = []
+    hFile = open("workoutdb/curlup_date.txt", 'r')
+    for line in hFile.readlines():
+        curlup_dates.append(str(line.rstrip()))
+
+
     bar_labels=pushup_dates
     bar_values=pushup_counts
-    return render_template('bar_chart.html', title='Push-up Monitor', max=150, labels=bar_labels, values=bar_values)
+    return render_template('bar_chart.html', title='Push-up Monitor', max=150, pushup_counts=pushup_counts,pushup_dates=pushup_dates,pullup_counts=pullup_counts,pullup_dates=pullup_dates,curlup_counts=curlup_counts,curlup_dates=curlup_dates)
 
-@app.route('/curlup')
-def curlup():
-    updateDB()
-    bar_labels=getCurlups()[0]
-    bar_values=getCurlups()[1]
-    return render_template('bar_chart.html', title='Curl-up Monitor', max=150, labels=bar_labels, values=bar_values)
-
-@app.route('/pullup')
-def pullup():
-    updateDB()
-    bar_labels=getPullups()[0]
-    bar_values=getPullups()[1]
-    return render_template('bar_chart.html', title='Pull-up Monitor', max=150, labels=bar_labels, values=bar_values)
 
 def getDate():
     x = datetime.datetime.now()
