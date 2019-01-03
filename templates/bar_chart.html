@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ title }}</title>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+</head>
+<style>
+  h1 { font-family: "Carter One"; font-size: 24px; font-style: normal; font-variant: normal; font-weight: bold; line-height: 26px; }
+  h3 { font-family: "Carter One"; font-size: 14px; font-style: normal; font-variant: normal; font-weight: bold; line-height: 15px; }
+  p { font-family: "Carter One"; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; }
+  blockquote { font-family: "Carter One"; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; }
+  pre { font-family: "Carter One"; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18px; }
+
+/* from w3schools */
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+  }
+  .error {
+    color: red;
+  }
+  .button2 {
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+  }
+
+  .button2:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+  }
+
+  td, th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr {
+    background-color: #00ff65;
+  }
+</style>
+
+<body>
+  <center>
+    <a href="{{ url_for('index') }}">
+      <button class="button button2">Return Home</button>
+    </a>
+    <h1>{{ title }}</h1>
+  </center>
+  <center>
+    <canvas id="chart" width="600" height="400"></canvas>
+    <script>
+      // bar chart data
+      var barData = {
+        labels : [
+          {% for item in labels %}
+           "{{ item }}",
+          {% endfor %}
+	],
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          data : [
+            {% for item in values %}
+               "{{ item }}",
+              {% endfor %}
+	    ]
+          }
+        ]
+      }
+     // get bar chart canvas
+     var mychart = document.getElementById("chart").getContext("2d");
+       steps = 10
+       max = {{max}}
+     // draw bar chart
+     new Chart(mychart).Bar(barData, {
+       scaleOverride: true,
+       scaleSteps: steps,
+       scaleStepWidth: Math.ceil(max / steps),
+       scaleStartValue: 0,
+       scaleShowVerticalLines: true,
+       scaleShowGridLines : true,
+       barShowStroke : true,
+       scaleShowLabels: true
+       }
+     );
+    </script>
+  </center>
+</body>
+</html>
