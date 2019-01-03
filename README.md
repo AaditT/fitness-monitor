@@ -16,4 +16,4 @@ Download Source Code
  - Running the web server: ``python3 main.py``
  - Launch the app in your browser: ``http://localhost:5000/``
 
-# Here's to the fulfillment of fitness resolutions 🥂
+## Here's to the fulfillment of fitness resolutions 🥂
