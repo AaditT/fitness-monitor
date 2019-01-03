@@ -2,3 +2,8 @@ push-up
 push-up
 curl-up
 curl-up
+curl-up
+pull-up
+pull-up
+pull-up
+curl-up

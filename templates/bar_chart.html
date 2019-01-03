@@ -67,7 +67,19 @@
     <a href="{{ url_for('index') }}">
       <button class="button button2">Table</button>
     </a>
+    <br>
+    <br>
+
+
     <h1>{{ title }}</h1>
+
+
+
+
+
+
+
+
     <canvas id="chart" width="300" height="200"></canvas>
     <script>
       // bar chart data
@@ -107,6 +119,16 @@
      );
     </script>
 
+
+
+
+
+
+
+
+
+
+
     <canvas id="chart2" width="300" height="200"></canvas>
     <script>
       // bar chart data
@@ -117,9 +139,9 @@
           {% endfor %}
 	],
         datasets : [{
-          fillColor: "rgba(173,254,187,0.2)",
-          strokeColor: "rgba(173,254,187,1)",
-          pointColor: "rgba(173,254,187,1)",
+          fillColor: "rgba(254,173,173,0.2)",
+          strokeColor: "rgba(254,173,173,1)",
+          pointColor: "rgba(254,173,173,1)",
           data : [
             {% for item in pullup_counts %}
                "{{ item }}",
@@ -128,7 +150,6 @@
           }
         ]
       }
-
      // get bar chart canvas
      var mychart = document.getElementById("chart2").getContext("2d");
        steps = 10
@@ -142,11 +163,11 @@
        scaleShowVerticalLines: true,
        scaleShowGridLines : true,
        barShowStroke : true,
-       scaleShowLabels: true,
-       title: "hi"
+       scaleShowLabels: true
        }
      );
     </script>
+
     <canvas id="chart3" width="300" height="200"></canvas>
     <script>
       // bar chart data
