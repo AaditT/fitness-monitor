@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>{{ title }}</title>
+  <title>Fitness Monitor</title>
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Carter+One" />
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
@@ -57,21 +57,37 @@
   tr {
     background-color: #00ff65;
   }
+  canvas {
+    width: 300px;
+    height: 400px;
+  }
 </style>
 
 <body>
   <center>
-    <a href="{{ url_for('log') }}">
-      <button class="button button2">Log Your Workout</button>
-    </a>
+      <button class="button button2" href="{{ url_for('log') }}">Log Your Workout</button>
     <a href="{{ url_for('index') }}">
       <button class="button button2">Table</button>
     </a>
     <br>
     <br>
+    <br>
+    <br>
 
 
-    <h1>{{ title }}</h1>
+    <h1>
+      Push-up's
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Pull-up's
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Curl-up's
+    </h1>
 
 
 
@@ -80,7 +96,7 @@
 
 
 
-    <canvas id="chart" width="300" height="200"></canvas>
+    <canvas id="chart" ></canvas>
     <script>
       // bar chart data
       var barData1 = {
@@ -129,7 +145,7 @@
 
 
 
-    <canvas id="chart2" width="300" height="200"></canvas>
+    <canvas id="chart2" ></canvas>
     <script>
       // bar chart data
       var barData2 = {
@@ -168,7 +184,7 @@
      );
     </script>
 
-    <canvas id="chart3" width="300" height="200"></canvas>
+    <canvas id="chart3" ></canvas>
     <script>
       // bar chart data
       var barData3 = {
