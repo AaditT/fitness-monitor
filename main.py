@@ -70,6 +70,7 @@ def getPullups():
 
 @app.route('/index')
 def graph():
+
     pushup_counts = []
     cFile = open("workoutdb/pushup_count.txt", 'r')
     for line in cFile.readlines():
