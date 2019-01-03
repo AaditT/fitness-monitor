@@ -1,6 +1,8 @@
 # fitness-monitor
 A minimalist monitor to manage infinite New Year fitness resolutions.
 
+![preview](img/img.jpg)
+
 ## 🛠 Installation
 
 Download Dependencies
@@ -9,7 +11,7 @@ Download Dependencies
 
 Download Source Code
  - ``git clone https://www.github.com/AaditT/fitness-monitor``)
- 
+
  ## 🔑 Usage
  - Running the web server: ``python3 main.py``
  - Launch the app in your browser: ``http://localhost:5000/``
