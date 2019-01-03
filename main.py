@@ -143,6 +143,7 @@ def log():
                 pFile = open("workoutdb/pullup_count.txt", 'a')
                 pFile.write(workout_count+"\n")
                 cFile = open("workoutdb/pullup_date.txt", 'a')
+                cFile.write(workout_date+"\n")
             error = None
             tFile = open("type.txt", 'a')
             tFile.write(workout_type+"\n")

@@ -11,3 +11,12 @@ curl-up
 push-up
 push-up
 push-up
+pull-up
+pull-up
+pull-up
+pull-up
+pull-up
+push-up
+pull-up
+pull-up
+curl-up
