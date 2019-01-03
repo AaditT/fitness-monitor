@@ -150,7 +150,7 @@ def log():
             dFile.write(workout_date+"\n")
             cFile = open("count.txt", 'a')
             cFile.write(workout_count+"\n")
-            return redirect(url_for('index'))
+            return redirect(url_for('graph'))
     return render_template('log.html')
 
 

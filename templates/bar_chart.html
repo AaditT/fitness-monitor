@@ -61,23 +61,26 @@
 
 <body>
   <center>
+    <a href="{{ url_for('log') }}">
+      <button class="button button2">Log Your Workout</button>
+    </a>
     <a href="{{ url_for('index') }}">
-      <button class="button button2">Return Home</button>
+      <button class="button button2">Table</button>
     </a>
     <h1>{{ title }}</h1>
     <canvas id="chart" width="300" height="200"></canvas>
     <script>
       // bar chart data
-      var barData = {
+      var barData1 = {
         labels : [
           {% for item in pushup_dates %}
            "{{ item }}",
           {% endfor %}
 	],
         datasets : [{
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
+          fillColor: "rgba(254,173,173,0.2)",
+          strokeColor: "rgba(254,173,173,1)",
+          pointColor: "rgba(254,173,173,1)",
           data : [
             {% for item in pushup_counts %}
                "{{ item }}",
@@ -91,7 +94,7 @@
        steps = 10
        max = {{max}}
      // draw bar chart
-     new Chart(mychart).Bar(barData, {
+     new Chart(mychart).Bar(barData1, {
        scaleOverride: true,
        scaleSteps: steps,
        scaleStepWidth: Math.ceil(max / steps),
@@ -107,16 +110,16 @@
     <canvas id="chart2" width="300" height="200"></canvas>
     <script>
       // bar chart data
-      var barData = {
+      var barData2 = {
         labels : [
           {% for item in pullup_dates %}
            "{{ item }}",
           {% endfor %}
 	],
         datasets : [{
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
+          fillColor: "rgba(173,254,187,0.2)",
+          strokeColor: "rgba(173,254,187,1)",
+          pointColor: "rgba(173,254,187,1)",
           data : [
             {% for item in pullup_counts %}
                "{{ item }}",
@@ -125,12 +128,13 @@
           }
         ]
       }
+
      // get bar chart canvas
      var mychart = document.getElementById("chart2").getContext("2d");
        steps = 10
        max = {{max}}
      // draw bar chart
-     new Chart(mychart).Bar(barData, {
+     new Chart(mychart).Bar(barData2, {
        scaleOverride: true,
        scaleSteps: steps,
        scaleStepWidth: Math.ceil(max / steps),
@@ -138,23 +142,24 @@
        scaleShowVerticalLines: true,
        scaleShowGridLines : true,
        barShowStroke : true,
-       scaleShowLabels: true
+       scaleShowLabels: true,
+       title: "hi"
        }
      );
     </script>
     <canvas id="chart3" width="300" height="200"></canvas>
     <script>
       // bar chart data
-      var barData = {
+      var barData3 = {
         labels : [
           {% for item in curlup_dates %}
            "{{ item }}",
           {% endfor %}
 	],
         datasets : [{
-          fillColor: "rgba(151,187,205,0.2)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
+          fillColor: "rgba(0,187,205,0.2)",
+          strokeColor: "rgba(0,187,205,1)",
+          pointColor: "rgba(0,187,205,1)",
           data : [
             {% for item in curlup_counts %}
                "{{ item }}",
@@ -168,7 +173,7 @@
        steps = 10
        max = {{max}}
      // draw bar chart
-     new Chart(mychart).Bar(barData, {
+     new Chart(mychart).Bar(barData3, {
        scaleOverride: true,
        scaleSteps: steps,
        scaleStepWidth: Math.ceil(max / steps),
