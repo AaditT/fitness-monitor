@@ -1,7 +1,4 @@
 from flask import Flask, Markup, render_template, redirect, url_for, request
-
-
-
 app = Flask(__name__)
 
 def updateDB():
@@ -58,11 +55,6 @@ def graph():
     bar_values=pushup_counts
     return render_template('bar_chart.html', title='Push-up Monitor', max=150, pushup_counts=pushup_counts,pushup_dates=pushup_dates,pullup_counts=pullup_counts,pullup_dates=pullup_dates,curlup_counts=curlup_counts,curlup_dates=curlup_dates)
 
-
-def getDate():
-    x = datetime.datetime.now()
-    return str(x.strftime("%x"))
-
 @app.route('/')
 def home():
     return redirect(url_for('graph'))
@@ -108,8 +100,6 @@ def log():
             cFile.write(workout_count+"\n")
             return redirect(url_for('graph'))
     return render_template('log.html')
-
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
