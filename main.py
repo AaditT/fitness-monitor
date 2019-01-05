@@ -23,51 +23,6 @@ def updateDB():
         mega_list.append(dict(count=counts[i],date=dates[i],type=types[i]))
     return [mega_list, types, counts, dates]
 
-def getPushups():
-    total_types = updateDB()[1]
-    total_counts = updateDB()[2]
-    total_dates = updateDB()[3]
-    pushup_indexes = []
-    for ind_type in total_types:
-        if ind_type == "push-up":
-            pushup_indexes.append(int(total_types.index(ind_type)))
-    counts = []
-    dates = []
-    for index in pushup_indexes:
-        counts.append(total_counts[index])
-        dates.append(total_dates[index])
-    return [dates, counts]
-
-def getCurlups():
-    total_types = updateDB()[1]
-    total_counts = updateDB()[2]
-    total_dates = updateDB()[3]
-    curlup_indexes = []
-    for ind_type in total_types:
-        if ind_type == "curl-up":
-            curlup_indexes.append(int(total_types.index(ind_type)))
-    counts = []
-    dates = []
-    for index in curlup_indexes:
-        counts.append(total_counts[index])
-        dates.append(total_dates[index])
-    return [dates, counts]
-
-def getPullups():
-    total_types = updateDB()[1]
-    total_counts = updateDB()[2]
-    total_dates = updateDB()[3]
-    pullup_indexes = []
-    for ind_type in total_types:
-        if ind_type == "pull-up":
-            pullup_indexes.append(int(total_types.index(ind_type)))
-    counts = []
-    dates = []
-    for index in pullup_indexes:
-        counts.append(total_counts[index])
-        dates.append(total_dates[index])
-    return [dates, counts]
-
 @app.route('/index')
 def graph():
 
