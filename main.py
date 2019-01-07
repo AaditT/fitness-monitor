@@ -1,5 +1,12 @@
 from flask import Flask, Markup, render_template, redirect, url_for, request
+from flask_basicauth import BasicAuth
 app = Flask(__name__)
+
+app.config['BASIC_AUTH_USERNAME'] = 'YOUR_USERNAME'
+app.config['BASIC_AUTH_PASSWORD'] = 'YOUR_PASSWORD'
+app.config['BASIC_AUTH_FORCE'] = True
+
+basic_auth = BasicAuth(app)
 
 @app.route('/index')
 def graph():
@@ -42,6 +49,7 @@ def home():
 
 
 @app.route('/log', methods=['GET', 'POST'])
+@basic_auth.required
 def log():
     if request.method == 'POST':
         error = None
