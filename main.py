@@ -1,25 +1,6 @@
 from flask import Flask, Markup, render_template, redirect, url_for, request
 app = Flask(__name__)
 
-def updateDB():
-    global mega_list
-    mega_list = []
-    types = []
-    counts = []
-    dates = []
-    tFile = open("type.txt", 'r')
-    for line in tFile.readlines():
-        types.append(str(line.rstrip()))
-    cFile = open("count.txt", 'r')
-    for line in cFile.readlines():
-        counts.append(str(line.rstrip()))
-    dFile = open("date.txt", 'r')
-    for line in dFile.readlines():
-        dates.append(str(line.rstrip()))
-    for i in range(0, len(types)):
-        mega_list.append(dict(count=counts[i],date=dates[i],type=types[i]))
-    return [mega_list, types, counts, dates]
-
 @app.route('/index')
 def graph():
 
@@ -59,11 +40,6 @@ def graph():
 def home():
     return redirect(url_for('graph'))
 
-@app.route('/table')
-def index():
-    error=None
-    return render_template('index.html',list=updateDB()[0],error=error)
-
 
 @app.route('/log', methods=['GET', 'POST'])
 def log():
@@ -102,4 +78,4 @@ def log():
     return render_template('log.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(debug=False, host='0.0.0.0',port=8080)
